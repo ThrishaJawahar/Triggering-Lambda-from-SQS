@@ -1,0 +1,20 @@
+import boto3
+
+def send_message():
+    sqs = boto3.client('sqs', region_name='us-east-1')
+    queue_url = "<Your SQS Queue URL>"
+
+    message = {
+        "order_id": "12345",
+        "customer_id": "67890",
+        "items": [{"product_id": "1", "quantity": 2}],
+        "total_price": 299.99
+    }
+
+    response = sqs.send_message(
+        QueueUrl=queue_url,
+        MessageBody=json.dumps(message)
+    )
+    print(f"Message sent: {response['MessageId']}")
+
+send_message()
