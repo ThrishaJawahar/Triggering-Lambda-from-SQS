@@ -1,7 +1,20 @@
-Run the provided script send_message.py to send messages to SQS
+## How It Works
+- A message is added to the SQS queue.
+- Lambda is triggered to process the message.
+- The result is logged, and errors are sent to a Dead Letter Queue (DLQ).
 
-Example: Send a message containing random text to the Messages queue every 0.1 second (10 messages per second):
+## Prerequisites
+- AWS Account
+- AWS CLI configured
+- IAM role with the following permissions:
+  - SQS
+  - Lambda
+  - CloudWatch
 
-./send_message.py -q Messages -i 0.1
+## Setup
+1. Create an SQS Queue.
+2. Deploy the Lambda function using the provided code.
+3. Link the SQS queue to the Lambda function.
 
-Press Ctrl+C to quit.
+## How to Run Locally
+Use AWS SDK (Boto3 for Python) to test the setup locally.
